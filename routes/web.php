@@ -20,19 +20,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts',[PostController::class,'index'])->name('post.index');
-
 Route::get('/about',[AboutController::class,'index'])->name('about.index');
 Route::get('/contacts',[ContactsController::class,'index'])->name('contact.index');
 Route::get('/main',[MainController::class,'index'])->name('main.index');
 
-Route::get('/posts/create',[PostController::class,'create'])->name('post.create');;
-Route::post('/posts',[PostController::class,'store'])->name('post.store');
+Route::group(['namespace' => 'App\Http\Controllers\Post'], function() {
 
-Route::get('/posts/{post}',[PostController::class,'show'])->name('post.show');
-Route::get('/posts/{post}/edit',[PostController::class,'edit'])->name('post.edit');
-Route::patch('/posts/{post}',[PostController::class,'update'])->name('post.update');
-Route::delete('/posts/{post}',[PostController::class,'destroy'])->name('post.delete');
+    Route::get('/posts','IndexController')->name('post.index');
+    Route::get('/posts/create','CreateController')->name('post.create');;
+    Route::post('/posts','StoreController')->name('post.store');
+    Route::get('/posts/{post}','ShowController')->name('post.show');
+    Route::get('/posts/{post}/edit','EditController')->name('post.edit');
+    Route::patch('/posts/{post}','UpdateController')->name('post.update');
+    Route::delete('/posts/{post}','DeleteController')->name('post.delete');
+});
 
 Route::get('/posts/update',[PostController::class,'update']);
 Route::get('/posts/delete',[PostController::class,'delete']);
