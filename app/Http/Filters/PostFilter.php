@@ -8,6 +8,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class PostFilter extends AbstractFilter
 {
+
     public const TITLE = 'title';
     public const CONTENT = 'content';
     public const CATEGORY_ID = 'category_id';
@@ -33,6 +34,6 @@ class PostFilter extends AbstractFilter
 
     public function category_id(Builder $builder, $value)
     {
-        $builder->where('category_id', $value);
+        $builder->whereIn('category_id', $this->paramToArray($value));
     }
 }

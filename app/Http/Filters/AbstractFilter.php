@@ -11,6 +11,8 @@ abstract class AbstractFilter implements FilterInterface
     /** @var array */
     private $queryParams = [];
 
+    protected $delimiter = ',';
+
     /**
      * AbstractFilter constructor.
      *
@@ -64,5 +66,10 @@ abstract class AbstractFilter implements FilterInterface
         }
 
         return $this;
+    }
+
+    protected function paramToArray($param)
+    {
+        return explode($this->delimiter, $param);
     }
 }
