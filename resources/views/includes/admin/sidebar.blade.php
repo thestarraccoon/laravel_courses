@@ -7,7 +7,9 @@
                 <i class="nav-icon fas fa-solid fa-bars"></i>
                 <p>
                     Posts
-                    <span class="badge badge-info right"> {{ $posts->total() }}</span>
+                    @if(isset($posts))
+                        <span class="badge badge-info right"> {{ $posts->total() }}</span>
+                    @endif
                 </p>
             </a>
         </li>

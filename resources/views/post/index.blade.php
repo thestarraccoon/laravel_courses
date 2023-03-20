@@ -2,7 +2,7 @@
 @section('content')
     <div>
         <div>
-            <a href="{{ route('post.create') }}" class="btn btn-success mb-3">Add shit</a>
+            <a href="{{ route('admin.post.create') }}" class="btn btn-success mb-3">Add shit</a>
         </div>
         <div>
             @foreach($posts as $post)
