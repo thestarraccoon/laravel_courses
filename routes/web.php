@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Post\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MainController;
@@ -24,6 +25,11 @@ Route::get('/about',[AboutController::class,'index'])->name('about.index');
 Route::get('/contacts',[ContactsController::class,'index'])->name('contact.index');
 Route::get('/main',[MainController::class,'index'])->name('main.index');
 
+Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function() {
+    Route::group(['namespace' => 'Post'], function() {
+        Route::get('/post', 'IndexController')->name('admin.post.index');
+    });
+});
 Route::group(['namespace' => 'App\Http\Controllers\Post'], function() {
 
     Route::get('/posts','IndexController')->name('post.index');
