@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\UpdateRequest;
+use App\Http\Resources\Post\PostResource;
 use App\Models\Post;
 
 class UpdateController extends BaseController
@@ -12,8 +13,10 @@ class UpdateController extends BaseController
     {
         $data = $request->validated();
 
-        $this->service->update($data, $post);
+        //$this->service->update($data, $post);
 
-        return redirect()->route('post.show', $post->id);
+        $post = $this->service->update($post, $data);
+        return $post instanceof  Post ? new PostResource($post) : $post;
+        //return redirect()->route('post.show', $post->id);
     }
 }
